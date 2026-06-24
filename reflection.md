@@ -5,13 +5,18 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
-- What classes did you include, and what responsibilities did you assign to each?
+The purpose of the app is to make task-tracking for pets easy. The 3 core actions a user should be able to perform are create a task, add/edit basic user and pet information, and view the tasks of today. There are four classes: Owner, Pet, Task, and Scheduler. An Owner can have 0 to many Pets, and an Owner can have 0 to many Tasks. The Scheduler must have at least one task to create a schedule.
 
-**b. Design changes**
+- What classes did you include, and what responsibilities did you assign to each?
+ I included the Owner, Pet, Task, and Scheduler classes. The Owner class contains the attributes ownerID, owner_name, and email. It can update user information. The pet class contains attribute pet_name. It can add a new pet and update pet information. The task class contains task_name, task_time, task_duration, status, priority and date. The task class allows tasks to be added, updated (both in status and in information), and removed. The scheduler class has the attributes start_time, end_time, and duration. It has the attributes calculate_duration, validate_times, and create_schedule. 
+
+**b. Design changes**(HERE)
 
 - Did your design change during implementation?
+Yes
 - If yes, describe at least one change and why you made it.
-
+(1) I moved the methods add_task(), and remove_task() to be functions for the Owner class rather than the Task class because (according to AI) "tasks are data objects, but the current design gives them manager-style methods." Therefore, giving the methods to the Owner class will maintain that the Owner is the only controller of the app.
+(2) I updated the relationship between the classes. Task initally has no link to Owner or Pet. Therefore, a task should link to the Owner and the Pet that the task is for. The Pet class also needs an owner reference. Scheduler also needs a relationship back to Owner or Pet. The relationship between Scheduler and Task is updated so that the Scheduler must have at least 1 task (I had added this initally to my reflections doc, but AI did not show the relationship in the diagram).
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
