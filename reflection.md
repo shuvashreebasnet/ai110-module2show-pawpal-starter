@@ -15,8 +15,9 @@ The purpose of the app is to make task-tracking for pets easy. The 3 core action
 - Did your design change during implementation?
 Yes
 - If yes, describe at least one change and why you made it.
-(1) I moved the methods add_task(), and remove_task() to be functions for the Owner class rather than the Task class because (according to AI) "tasks are data objects, but the current design gives them manager-style methods." Therefore, giving the methods to the Owner class will maintain that the Owner is the only controller of the app.
-(2) I updated the relationship between the classes. Task initally has no link to Owner or Pet. Therefore, a task should link to the Owner and the Pet that the task is for. The Pet class also needs an owner reference. Scheduler also needs a relationship back to Owner or Pet. The relationship between Scheduler and Task is updated so that the Scheduler must have at least 1 task (I had added this initally to my reflections doc, but AI did not show the relationship in the diagram).
+(1) I moved the methods add_task(), update_task() and remove_task() to be functions for the Owner class rather than the Task class because (according to AI) "tasks are data objects, but the current design gives them manager-style methods." Therefore, giving the methods to the Owner class will maintain that the Owner is the only controller of the app.
+
+(2) I updated the relationship between the classes. According to AI, Task initally has no link to Owner or Pet. I updated the UML diagram so that the Task class is linked to the Pet class in which a Pet can have 0 to many Tasks instead of Owner having 0 to many tasks. The relationship between Scheduler and Task is updated so that the Scheduler must have at least 1 task (I had added this initally to my reflections doc, but AI did not show the relationship in the diagram). I also added a list Pets attribute to Owner.
 ---
 
 ## 2. Scheduling Logic and Tradeoffs

@@ -40,4 +40,5 @@ classDiagram
 
     Owner "1" -- "0..*" Pet
     Pet "1" -- "0..*" Task
-    Scheduler "1" -- "1..*" Task
+    Scheduler --> "0..*" Task : manages
+    Scheduler ..> Owner : uses
