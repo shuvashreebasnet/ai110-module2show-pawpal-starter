@@ -1,0 +1,43 @@
+classDiagram
+    class Owner {
+        +int ownerID
+        +String owner_name
+        +String email
+        +list pets
+        +update_owner_info()
+        +add_pet()
+        +remove_pet()
+
+    }
+
+    class Pet {
+        +String pet_name
+        +int age
+        +list Tasks
+        +update_pet_info()
+        +add_task()
+        +remove_task()
+        +list_tasks()
+    }
+
+    class Task {
+        +String task_description
+        +String due_time
+        +int task_frequency
+        +String completion_status
+        +String priority
+        +mark_complete()
+    }
+
+    class Scheduler {
+        +String start_time
+        +String end_time
+        +int duration
+        +calculate_duration()
+        +validate_times()
+        +create_schedule()
+    }
+
+    Owner "1" -- "0..*" Pet
+    Pet "1" -- "0..*" Task
+    Scheduler "1" -- "1..*" Task
