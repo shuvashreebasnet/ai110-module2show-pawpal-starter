@@ -1,5 +1,6 @@
 import streamlit as st
 from pawpal_system import Owner, Pet, Task, Scheduler
+import datetime
 
 st.set_page_config(page_title="PawPal+", page_icon="🐾", layout="centered")
 
@@ -56,7 +57,6 @@ st.markdown("### Add a pet")
 with st.form("add_pet_form"):
     new_pet_name = st.text_input("Pet name", key="new_pet_name")
     new_pet_age = st.number_input("Age", min_value=0, max_value=30, value=2, step=1, key="new_pet_age")
-    species = st.selectbox("Species", ["dog", "cat", "other"], key="species_select")
     submitted = st.form_submit_button("Add pet")
 
     if submitted:
@@ -81,19 +81,23 @@ st.caption("Add a few tasks. In your final version, these should feed into your 
 if "tasks" not in st.session_state:
     st.session_state.tasks = []
 
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4, col5, col6= st.columns(6)
 with col1:
-    task_title = st.text_input("Task title", value="Morning walk")
+    task_title = st.text_input("Task Title", value="Morning walk")
 with col2:
-    duration = st.number_input("Duration (minutes)", min_value=1, max_value=240, value=20)
-with col3:
     priority = st.selectbox("Priority", ["Low", "Medium", "High"], index=2)
+with col3:
+    time = st.time_input("Time", value = datetime.time(4, 30))
 with col4:
+    date = st.selectbox("Day", ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
+with col5:
+    freq = st.selectbox("Frequency", ["Daily", "Weekly", "Monthy", "Semi-Annually", "Annually"])
+with col6:
     pet = st.selectbox("Pet",[pet.name for pet in owner.pets])
 
 if st.button("Add task"):
     st.session_state.tasks.append(
-        {"Title": task_title, "Duration (minutes)": int(duration), "Priority": priority, "Pet": pet}
+        {"Title": task_title, "Time": time, "Day": date, "Frequency": freq, "Priority": priority, "Pet": pet}
     )
     tasks = st.session_state.tasks
 
@@ -124,8 +128,9 @@ if st.button("Generate schedule"):
 
             task = Task(
                 description=task_data.get("Title", "Untitled task"),
-                due_time="TBD",
+                due_time=task_data.get("Time", datetime.time(0, 0)),
                 priority=str(task_data.get("Priority", "medium")).lower(),
+                pet_name=matching_pet.name
             )
             matching_pet.add_task(task)
 
@@ -135,6 +140,6 @@ if st.button("Generate schedule"):
         if planned_tasks:
             st.success("Schedule created.")
             for index, task in enumerate(planned_tasks, start=1):
-                st.write(f"{index}. {task.description} — Priority: {task.priority}")
+                st.write(f"{index}. {task.description} for {task.pet_name} — Priority: {task.priority}")
         else:
             st.info("No tasks were included in the schedule.")

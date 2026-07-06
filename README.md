@@ -55,10 +55,21 @@ Paste a sample of your app's CLI or Streamlit output here so a reader can see wh
 ```
 ```python
 Today's schedule:
-- Feed cat (09:00)
-- Walk cat (17:00)
-- Feed cat (09:30)
-- Walk cat (16:30)
+- Feed Sanu (09:00)
+- Walk Sanu (17:00)
+- Feed Momo (09:30)
+- Walk Momo (16:30)
+Schedule sorted by time:
+- Feed Sanu (09:00)
+- Feed Momo (09:30)
+- Walk Momo (16:30)
+- Walk Sanu (17:00)
+Schedule sorted by cat1 - Sanu:
+- Feed Sanu (09:00)
+- Walk Sanu (17:00)
+Schedule sorted by cat2 - Momo:
+- Feed Momo (09:30)
+- Walk Momo (16:30)
 ```
 
 ## 🧪 Testing PawPal+

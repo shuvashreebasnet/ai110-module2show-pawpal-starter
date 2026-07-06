@@ -2,24 +2,24 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import List, Optional
+from datetime import time as dt_time
 
 
 @dataclass
 class Task:
     description: str
-    due_time: str
-    frequency: int = 1
+    due_time: dt_time = field(default_factory=lambda: dt_time(0, 0))
+    due_date: str = ""
+    pet_name: str = ""
+    frequency: str = ""
     completion_status: str = "pending"
     priority: str = "medium"
-    pet_name: str
 
     def mark_complete(self) -> None:
         """Mark the task as completed."""
         self.completion_status = "completed"
 
-    def get_pet_name(self) -> str:
-        """Return the pet name associated with this task."""
-        return self.pet_name
+
 
 
 @dataclass
@@ -37,6 +37,7 @@ class Pet:
 
     def add_task(self, task: Task) -> None:
         """Add a task to the pet's task list."""
+        task.pet_name = self.name
         self.tasks.append(task)
 
     def remove_task(self, task: Task) -> None:
@@ -97,4 +98,28 @@ class Scheduler:
         for pet in self.owner.pets:
             tasks.extend(pet.list_tasks())
         return tasks
+
+    def sort_by_time(self) -> List[Task]:
+        """Return all tasks for this scheduler sorted by due_time."""
+        if self.owner is None:
+            return []
+
+        tasks = self.create_schedule()
+        return sorted(tasks, key=lambda task: task.due_time)
+
+    def filter_by_pet(self, pet_name: str) -> List[Task]:
+        """Return all tasks for the given pet name."""
+        if self.owner is None:
+            return []
+
+        tasks = self.create_schedule()
+        return [task for task in tasks if task.pet_name == pet_name]
+
+    def sort_by_pet(self, pet_name: str) -> List[Task]:
+        """Return tasks for `pet_name` sorted by `due_time`."""
+        if self.owner is None:
+            return []
+
+        tasks = [task for task in self.create_schedule() if task.pet_name == pet_name]
+        return sorted(tasks, key=lambda task: task.due_time)
 
