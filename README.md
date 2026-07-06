@@ -44,7 +44,7 @@ pip install -r requirements.txt
 
 ## 🖥️ Sample Output
 
-Paste a sample of your app's CLI or Streamlit output here so a reader can see what a generated plan looks like:
+Sample (Terminal) Output
 
 ```
 # e.g.:
@@ -64,10 +64,10 @@ Schedule sorted by time:
 - Feed Momo (09:30)
 - Walk Momo (16:30)
 - Walk Sanu (17:00)
-Schedule sorted by cat1 - Sanu:
+Schedule filtered by cat1 - Sanu:
 - Feed Sanu (09:00)
 - Walk Sanu (17:00)
-Schedule sorted by cat2 - Momo:
+Schedule filtered by cat2 - Momo:
 - Feed Momo (09:30)
 - Walk Momo (16:30)
 ```
@@ -76,7 +76,7 @@ Schedule sorted by cat2 - Momo:
 
 ```bash
 # Run the full test suite:
-pytest
+python -m pytest
 
 # Run with coverage:
 pytest --cov
@@ -94,10 +94,10 @@ Sample test output:
 
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | Scheduler.sort_by_time | by time in chronological order, AI-generated test in test_pawpal.py, manual and terminal-printed test in main.py |
+| Filtering | Scheduler.filter_by_pet | filter by pet name, AI-generated test in test_pawpal.py, manual and terminal-printed test in main.py |
+| Conflict handling | | e.g., overlapping time slots, did not implement yet |
+| Recurring tasks | | e.g., daily vs. weekly, did not implemement yet |
 
 ## 📸 Demo Walkthrough
 
