@@ -65,6 +65,7 @@ class Scheduler:
     start_time: str
     end_time: str
     duration: int
+    owner: Optional[Owner] = None
 
     def calculate_duration(self) -> int:
         return self.duration
@@ -73,5 +74,11 @@ class Scheduler:
         return self.start_time < self.end_time
 
     def create_schedule(self) -> List[Task]:
-        return []
+        if self.owner is None:
+            return []
+
+        tasks: List[Task] = []
+        for pet in self.owner.pets:
+            tasks.extend(pet.list_tasks())
+        return tasks
 

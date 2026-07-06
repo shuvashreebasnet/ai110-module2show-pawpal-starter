@@ -23,6 +23,7 @@ classDiagram
     class Task {
         +String task_description
         +String due_time
+        +int duration
         +int task_frequency
         +String completion_status
         +String priority
@@ -39,6 +40,5 @@ classDiagram
     }
 
     Owner "1" -- "0..*" Pet
+    Owner "1" -- "0..1" Scheduler
     Pet "1" -- "0..*" Task
-    Scheduler --> "0..*" Task : manages
-    Scheduler ..> Owner : uses

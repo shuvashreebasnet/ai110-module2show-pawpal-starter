@@ -53,6 +53,13 @@ Paste a sample of your app's CLI or Streamlit output here so a reader can see wh
 #   09:00 — Feeding (10 min) [priority: high]
 #   ...
 ```
+```python
+Tasks in schedule:
+- Feed cat (09:00)
+- Walk cat (17:00)
+- Feed cat (09:30)
+- Walk cat (16:30)
+```
 
 ## 🧪 Testing PawPal+
 

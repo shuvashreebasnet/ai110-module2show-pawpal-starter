@@ -15,9 +15,10 @@ The purpose of the app is to make task-tracking for pets easy. The 3 core action
 - Did your design change during implementation?
 Yes
 - If yes, describe at least one change and why you made it.
-(1) I moved the methods add_task(), update_task() and remove_task() to be functions for the Owner class rather than the Task class because (according to AI) "tasks are data objects, but the current design gives them manager-style methods." Therefore, giving the methods to the Owner class will maintain that the Owner is the only controller of the app.
+(1) I moved the methods add_task() and remove_task() to be functions for the Pet class rather than the Task class because (according to AI) "tasks are data objects, but the current design gives them manager-style methods." Therefore, giving the methods to the Pet class will allow tasks to be managed for each pet, and based on my UML the owner manages the pets in the list of pets attribute.
 
-(2) I updated the relationship between the classes. According to AI, Task initally has no link to Owner or Pet. I updated the UML diagram so that the Task class is linked to the Pet class in which a Pet can have 0 to many Tasks instead of Owner having 0 to many tasks. The relationship between Scheduler and Task is updated so that the Scheduler must have at least 1 task (I had added this initally to my reflections doc, but AI did not show the relationship in the diagram). I also added a list Pets attribute to Owner.
+(2) I updated the relationship between the classes. According to AI, Task initally has no link to Owner or Pet. I updated the UML diagram so that the Task class is linked to the Pet class in which a Pet can have 0 to many Tasks instead of Owner having 0 to many tasks. The relationship between Scheduler and Owner is that an Owner can optionally have one schedule. I also added a list of pets as an attribute for Owner to show that 1 to 0..* relationship between Owner and Pets. I made these changes because logically a schedule cannot be created if there are no tasks for it to work with, and the schedule is created across tasks of multiple Pets which can be obtained by the list of Pets attribute under Owner.
+
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
