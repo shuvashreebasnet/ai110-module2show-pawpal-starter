@@ -54,7 +54,7 @@ Paste a sample of your app's CLI or Streamlit output here so a reader can see wh
 #   ...
 ```
 ```python
-Tasks in schedule:
+Today's schedule:
 - Feed cat (09:00)
 - Walk cat (17:00)
 - Feed cat (09:30)
