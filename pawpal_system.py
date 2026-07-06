@@ -11,10 +11,15 @@ class Task:
     frequency: int = 1
     completion_status: str = "pending"
     priority: str = "medium"
+    pet_name: str
 
     def mark_complete(self) -> None:
         """Mark the task as completed."""
         self.completion_status = "completed"
+
+    def get_pet_name(self) -> str:
+        """Return the pet name associated with this task."""
+        return self.pet_name
 
 
 @dataclass
